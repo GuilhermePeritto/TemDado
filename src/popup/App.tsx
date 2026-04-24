@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import { CategoryTabs, type Category } from "@/components/CategoryTabs";
 import { DataField } from "@/components/DataField";
 import { FormatToggle } from "@/components/FormatToggle";
@@ -30,17 +30,6 @@ function App() {
   const [dados, setDados] = useState<PessoaCompleta>(initialState.dados);
   const [cartao, setCartao] = useState<CartaoCredito>(initialState.cartao);
 
-  const formatChanged = useRef(false);
-  useEffect(() => {
-    if (!formatChanged.current) {
-      formatChanged.current = true;
-      return;
-    }
-    const novo = gerarPessoaCompleta(comMascara);
-    setDados(novo);
-    setCartao(gerarCartaoPorBandeira(bandeiraSelecionada, novo.pessoa.nomeCompleto, comMascara));
-  }, [comMascara]);
-
   const gerarTudo = useCallback(() => {
     const novo = gerarPessoaCompleta(comMascara);
     setDados(novo);
@@ -57,17 +46,17 @@ function App() {
 
   return (
     <div className="flex h-[560px] w-[420px] flex-col overflow-hidden rounded-3xl bg-background shadow-2xl">
-      <header className="border-b border-white/5 px-5 py-4">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-lg font-bold tracking-tight text-foreground">
-              Tem Dado?
+      <header className="border-b border-white/10 px-5 py-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <h1 className="whitespace-nowrap text-xl font-bold leading-none tracking-tight text-foreground">
+              Você tem dado?
             </h1>
-            <p className="text-xs text-muted-foreground">
+            <p className="mt-1 truncate text-xs text-muted-foreground">
               Gerador de dados fictícios
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">Máscara</span>
               <FormatToggle comMascara={comMascara} onChange={setComMascara} />
@@ -75,7 +64,7 @@ function App() {
             <button
               type="button"
               onClick={gerarTudo}
-              className="flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/15 hover:text-accent-purple"
+              className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/15 px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/20 hover:text-accent-purple"
             >
               <RefreshCw className="h-4 w-4" />
               Gerar
@@ -218,8 +207,8 @@ function App() {
                     onClick={() => trocarBandeira(id)}
                     className={`flex shrink-0 flex-col items-center gap-1.5 rounded-xl border p-2.5 transition-all ${
                       bandeiraSelecionada === id
-                        ? "border-white/20 bg-white/10"
-                        : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/5 hover:text-accent-purple"
+                        ? "border-white/35 bg-white/15"
+                        : "border-white/15 bg-white/[0.06] hover:border-white/25 hover:bg-white/10 hover:text-accent-purple"
                     }`}
                     title={nomeBandeira}
                   >
@@ -297,7 +286,7 @@ function App() {
         </div>
       </div>
 
-      <footer className="border-t border-white/5 px-5 py-2.5 text-center text-[10px] text-muted-foreground">
+      <footer className="border-t border-white/10 px-5 py-2.5 text-center text-[10px] text-muted-foreground">
         Dados fictícios para testes • Uso responsável
       </footer>
     </div>

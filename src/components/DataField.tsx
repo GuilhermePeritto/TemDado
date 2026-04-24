@@ -19,7 +19,7 @@ export function DataField({
   return (
     <div
       className={cn(
-        "flex flex-col gap-1.5 rounded-xl border border-white/5 bg-white/[0.02] p-3",
+        "flex flex-col gap-1.5 rounded-xl border border-white/15 bg-white/[0.06] p-3",
         className
       )}
     >
@@ -34,7 +34,7 @@ export function DataField({
           type="button"
           onClick={() => onCopy(value)}
           title="Copiar"
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/10 hover:text-accent-purple"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/15 hover:text-accent-purple"
         >
           {copied ? (
             <Check className="h-4 w-4 text-emerald-500" />

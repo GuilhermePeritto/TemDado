@@ -17,7 +17,7 @@ const tabs: { id: Category; label: string; icon: React.ElementType }[] = [
 
 export function CategoryTabs({ active, onSelect }: CategoryTabsProps) {
   return (
-    <div className="flex w-full shrink-0 gap-0.5 overflow-x-auto overflow-y-hidden rounded-lg border border-white/5 bg-white/[0.02] p-0.5">
+    <div className="flex w-full shrink-0 gap-0.5 overflow-x-auto overflow-y-hidden rounded-lg border border-white/15 bg-white/[0.06] p-0.5">
       {tabs.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
@@ -25,8 +25,8 @@ export function CategoryTabs({ active, onSelect }: CategoryTabsProps) {
           className={cn(
             "flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium transition-all",
             active === id
-              ? "bg-white/10 text-foreground shadow-sm"
-              : "text-muted-foreground hover:bg-white/5 hover:text-accent-purple"
+              ? "bg-white/20 text-foreground shadow-sm"
+              : "text-muted-foreground hover:bg-white/12 hover:text-accent-purple"
           )}
         >
           <Icon className="h-3.5 w-3.5 shrink-0" />
